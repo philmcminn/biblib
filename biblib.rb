@@ -49,7 +49,7 @@ def format_pub(pub, fields=nil, wrap_at=120)
   return str
 end
 
-def prettify(bib_in, bib_out, wrap_at=120, fields=%w(
+def prettify(bib_in, bib_out, alpha_keys=true, wrap_at=120, fields=%w(
   author
   title
   booktitle
@@ -75,8 +75,16 @@ def prettify(bib_in, bib_out, wrap_at=120, fields=%w(
 ))
   pubs = BibTeX.open(bib_in)
 
-  bib_data = ""
+  keys = []
   pubs.each do |pub|
+    keys << pub.id
+  end
+
+  keys = keys.sort_by(&:downcase) if alpha_keys
+
+  bib_data = ""
+  keys.each do |key|
+    pub = pubs[key]
     bib_data += format_pub(pub, fields, wrap_at)
   end
 
