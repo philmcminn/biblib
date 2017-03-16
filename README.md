@@ -1,4 +1,4 @@
-!Biblib BibTeX file manipulation library
+# Biblib BibTeX file manipulation library
 
 To install the library you will need Ruby 2.2 or better (the library may work on earlier versions of Ruby, however I've not tested it.) You will also need bundler installed:
 
